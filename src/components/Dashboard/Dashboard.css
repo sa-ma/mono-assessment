@@ -1,0 +1,80 @@
+.dashboard {
+  width: 100%;
+}
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  align-items: center;
+}
+.greetings {
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin: 2rem 0;
+}
+.greetings span {
+  color: #182cd1;
+  text-transform: uppercase;
+}
+.dashboard__content {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.dashboard_content__inner {
+  width: 100%;
+}
+.account-overview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.tab-list__item {
+  display: flex;
+  align-items: center;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  justify-content: center;
+  font-family: inherit;
+  transition: all 0.3s ease-in-out;
+  border: 0;
+  outline: none;
+  margin: 0 1rem;
+  text-transform: capitalize;
+}
+
+.tab-list__item-active {
+  background-color: #182cd1;
+  color: #fff;
+}
+.tab-list__item-inactive {
+  color: #55586f;
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .dashboard__header {
+    padding: 2rem 6rem;
+  }
+  .dashboard__content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .dashboard_content__inner {
+    max-width: 50%;
+  }
+}

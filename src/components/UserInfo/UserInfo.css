@@ -1,0 +1,9 @@
+.user-info {
+  margin: 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .user-info {
+    margin: 1rem;
+  }
+}

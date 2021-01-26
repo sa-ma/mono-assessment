@@ -1,0 +1,16 @@
+.auth {
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.auth__brand {
+  color: #050929;
+  font-size: 3rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,23 @@
+.balance-card {
+  background-color: #182cd1;
+  padding: 2rem;
+  width: max-content;
+  margin: 2rem 0;
+  box-shadow: 4px 4px 20px #ededf6;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.balance-card__title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.balance-card__amount {
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 1rem;
+}

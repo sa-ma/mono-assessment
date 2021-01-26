@@ -1,0 +1,15 @@
+.transaction-info {
+  margin: 1rem 0;
+}
+.debit {
+  color: #b00;
+}
+.credit {
+  color: green;
+}
+
+@media (min-width: 768px) {
+  .transaction-info {
+    margin: 1rem;
+  }
+}
