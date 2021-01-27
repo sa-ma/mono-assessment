@@ -40,7 +40,7 @@ const Auth = ({ setIsLoggedIn, setIsLoading }) => {
   return (
     <div className="auth">
       <h1 className="auth__brand">Welcome to Sample Company</h1>
-      <button className="btn" onClick={() => monoConnect.open()}>
+      <button className="auth__btn" onClick={() => monoConnect.open()}>
         Authenticate with Mono
       </button>
     </div>

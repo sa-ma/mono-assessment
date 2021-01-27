@@ -1,17 +1,51 @@
 .auth {
-  margin: 5rem auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 1rem;
+  padding: 8rem 2rem;
+  clip-path: polygon(0 0, 100% 0, 100% 71%, 0 89%);
+  height: 100vh;
+  background-color: #182cd1;
 }
 
 .auth__brand {
-  color: #050929;
-  font-size: 3rem;
+  margin-top: 5rem;
+  color: #fff;
+  font-size: 3.8rem;
   font-weight: 500;
   text-transform: capitalize;
   margin-bottom: 2rem;
-  text-align: center;
+}
+
+.auth__btn {
+  display: flex;
+  align-items: center;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 1.5rem 2rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  justify-content: center;
+  font-family: inherit;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  background: hsla(0, 0%, 100%, 0.1);
+  color: #fff;
+  border: 0;
+  max-width: max-content;
+}
+
+.auth__btn:hover {
+  filter: contrast(85%);
+}
+
+@media (min-width: 768px) {
+  .auth {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .auth__brand {
+    margin-top: 0;
+  }
 }
