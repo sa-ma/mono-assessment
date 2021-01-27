@@ -1,6 +1,6 @@
 # Mono Assessment
 
-[Sample App](https://mono-assessment.vercel.app/) is an app that enables you to access your financial details of accounts in Africa with a couple of clicks
+[Sample App](https://mono-assessment.vercel.app/) is a web application that gives you access to your financial account details across Africa.
 
 ![](https://paper-attachments.dropbox.com/s_67D2BE97616EF0FA524F4EB785CA9931B6D14C2C62B847C844884501BC23709E_1611626949785_image.png)
 
@@ -25,6 +25,7 @@ These instructions will get you started running the application.
 
 **Prerequisites**
 
+- Knowledge of JavaScript and React
 - Node js v10 or greater
 - npm v5.2 or greater
 - yarn
@@ -37,7 +38,7 @@ These instructions will get you started running the application.
 - Navigate to the root directory and run `yarn install` to install dependencies
 - Get your API keys from [Mono](https://docs.mono.co/docs/sign-up)
 - Create a `.env` file in the root directory of the project
-- Copy the content of `.env.sample` file and paste in `.env` file
+- Copy the contents of `.env.sample` file and paste in `.env` file
 - Replace the placeholder API keys with the keys gotten from Mono
 - Start the development server `yarn start`
 
@@ -69,10 +70,8 @@ The account id gotten from Mono is stored in the [local storage](https://develop
     import axios from 'axios';
     import { format, sub } from 'date-fns';
     import { toast } from 'react-toastify';
-
     const startDate = format(new Date(), 'dd-MM-yyyy');
     const endDate = format(sub(new Date(), { days: 5 }), 'dd-MM-yyyy');
-
     export const getUserData = (userId, cbData) => {
       axios
         .get(`https://api.withmono.com/accounts/${userId}`, {
@@ -81,7 +80,6 @@ The account id gotten from Mono is stored in the [local storage](https://develop
         .then(({ data }) => cbData(data))
         .catch((error) => toast.error('Error fetching user data.'));
     };
-
     export const getTransactions = (userId, cbData) => {
       axios
         .get(`https://api.withmono.com/accounts/${userId}/transactions`, {
@@ -103,7 +101,6 @@ The account id gotten from Mono is stored in the [local storage](https://develop
           toast.error('Error fetching transactions.');
         });
     };
-
     export const refreshData = (userId, cbIsLoggedIn) => {
       axios
         .post(
@@ -120,16 +117,17 @@ The account id gotten from Mono is stored in the [local storage](https://develop
             cbIsLoggedIn(false);
             return;
           }
-          toast.success('Data has been updated');
+          return;
         })
-        .catch((error) => toast.error('Unable to sync data.'));
+        .catch((error) => {
+          toast.error('Unable to sync data. Please try again.');
+        });
     };
 
 - `getUserData`: is responsible for fetching the account information of a user from the [information endpoint](https://api.withmono.com/accounts/id) on Mono. It takes `id` and `cbData` as parameters. The `id` is the account id of the authenticated user and `cbData` is a callback function for handling the data returned from Mono.
-- `getTransactions`: this function fetches the latest transactions of the user from [Mono](https://docs.mono.co/reference#transactions). A start and end data are passed as query params to get only transactions of the last 5 days. it takes the account id and a callback to handle the data as parameters.
-- `refreshData` : prior to [data sync](https://mono.co/blog/introducing-mono-data-sync) a user will have to be re-authenticated to be able to fetch new transaction data. The `refreshData` allows us to refresh the account id of the user so it can be used continuously to access data from Mono APIs.
+- `getTransactions`: this function fetches the latest transactions of the user from [Mono](https://docs.mono.co/reference#transactions). A start and end date are passed as query params to get only transactions of the last 5 days. it takes the account id and a callback to handle the data as parameters.
+- `refreshData` : before \[data sync\](https://mono.co/blog/introducing-mono-data-sync) a user will have to be re-authenticated to be able to fetch new transaction data. The `refreshData` allows us to refresh the account id with the financial institution of the user so we can always get up to date data in our application without having to go through the re-authentication process.
 
-## Credits
+## References
 
-- **Samaila Bala** - [SA-MA](https://github.com/sa-ma)
 - [Mono API Docs](https://docs.mono.co/)
