@@ -40,8 +40,8 @@ function App() {
         <Auth setIsLoggedIn={setIsLoggedIn} setIsLoading={setIsLoading} />
       )}
       <ToastContainer
-        position="top-right"
-        autoClose={5000}
+        position="bottom-right"
+        autoClose={3000}
         hideProgressBar={true}
         newestOnTop={false}
         closeOnClick

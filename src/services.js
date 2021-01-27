@@ -51,7 +51,9 @@ export const refreshData = (userId, cbIsLoggedIn) => {
         cbIsLoggedIn(false);
         return;
       }
-      toast.success('Data has been updated');
+      return;
     })
-    .catch((error) => toast.error('Unable to sync data.'));
+    .catch((error) => {
+      toast.error('Unable to sync data. Please try again.');
+    });
 };

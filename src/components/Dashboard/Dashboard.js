@@ -10,12 +10,37 @@ const Dashboard = ({ setIsLoggedIn, userId }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const [activeTab, setActiveTab] = useState('user');
+  const [wait, setWait] = useState(true);
+
+  const handleMetaWait = () => {
+    if (userData && userData.meta.data_status.toUpperCase() === 'PROCESSING') {
+      getUserData(userId, setUserData);
+      return;
+    }
+    if (userData && userData.meta.data_status.toUpperCase() === 'AVAILABLE') {
+      setWait(false);
+    }
+    return;
+  };
+
+  const getUpdatedData = () => {
+    setIsLoading(true);
+    refreshData(userId, setIsLoggedIn);
+    getUserData(userId, setUserData);
+    setTimeout(() => setIsLoading(false), 2000);
+  };
 
   useEffect(() => {
     setIsLoading(true);
     getUserData(userId, setUserData);
+
+    const interval = setInterval(() => {
+      refreshData(userId, setIsLoggedIn);
+      getUserData(userId, setUserData);
+    }, 100000);
     setIsLoading(false);
-  }, [userId]);
+    return () => clearInterval(interval);
+  }, [userId, setIsLoggedIn]);
 
   const logout = () => {
     localStorage.removeItem('@auth');
@@ -43,10 +68,7 @@ const Dashboard = ({ setIsLoggedIn, userId }) => {
             <div className="account-overview">
               <div className="account-overview__header">
                 <h2 className="h1">Account Overview</h2>
-                <button
-                  className="btn"
-                  onClick={() => refreshData(userId, setIsLoggedIn)}
-                >
+                <button className="btn" onClick={() => getUpdatedData()}>
                   Refresh Data
                 </button>
               </div>
@@ -81,7 +103,8 @@ const Dashboard = ({ setIsLoggedIn, userId }) => {
                 <Transactions
                   currency={userData && userData.account.currency}
                   userId={userId}
-                  setIsLoggedIn={setIsLoggedIn}
+                  wait={wait}
+                  handleWait={handleMetaWait}
                 />
               )}
             </div>
